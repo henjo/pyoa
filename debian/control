@@ -1,8 +1,9 @@
 Source: pyoa
-Section: unknown
+Section: python
 Priority: extra
 Maintainer: Henrik Johansson <henrik@johome.net>
-Build-Depends: debhelper (>= 7)
+Build-Depends: liboa-dev (=2.2p084-1), debhelper (>=7.0.0), python-support (>= 0.6), cdbs (>= 0.4.49), python-all-dev
+XS-Python-Version: >=2.4
 Standards-Version: 3.8.1
 Homepage: <insert the upstream URL, if relevant>
 
