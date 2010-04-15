@@ -299,5 +299,5 @@ if (__name__=='__main__'):
   b=Builder()
   b.Setup()
   b.Build()
-  #b.BuildTools()
+  b.BuildTools()
   
