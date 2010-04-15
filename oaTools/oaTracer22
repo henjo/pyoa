@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+#
+#  Wrapper to call main application
+#
+
+if (__name__=='__main__'):
+  import sys
+  import oaTools.oaTracer22
+  apply(oaTools.oaTracer22.Run,sys.argv[1:])

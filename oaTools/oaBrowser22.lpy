@@ -1,0 +1,9 @@
+#!/bin/env lsipython
+#
+#  Wrapper to call main application
+#
+
+if (__name__=='__main__'):
+  import sys
+  import oaTools.oaBrowser22
+  apply(oaTools.oaBrowser22.Run,sys.argv[1:])

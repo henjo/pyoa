@@ -1,0 +1,88 @@
+
+Python for OpenAccess 2.2 provides access to the OpenAccess 2.2 API
+using Python.
+
+Consult the "Python Mapping for OpenAcess 2.2" Document for
+instructions on how the OpenAccess 2.2 API is called from Python.
+
+--------------------------------------------------------------------
+Build Instructions:
+
+I have built the the current version on the following systems:
+  Linux RedHat EL 2.1 (32bit) with gcc 3.2.3
+  Linux RedHat EL 3.0/x64 (64bit) with gcc 3.2.3
+  Windows XP with Microsoft Visual Studio .Net 2003
+  
+I have built prior versions on the following systems:
+  SunOS-5.8 with Forte
+
+  
+I built this using the OpenAccess 2.2 Source Kit, but it should
+also build with the Binary Kit (as long as the same compiler
+is used).
+This build is for OpenAccess 2.2.6
+
+You will need Python 2.2.2 or newer installed on your system 
+to build and use this code.
+
+For SunOS and Windows2000/NT (or some other UNIX platform), 
+the code can be compiled as follows:
+
+  The system is build using the Python distutils package.
+  This uses the setup.py file.
+  
+  2.1 Edit the setup.py file to change the directories where
+      OpenAccess is installed on your system.
+
+      You man also need to edit the defines used on your system.
+
+  2.2 Compile the code:
+      python setup.py build
+      
+      This should compile all the source files.
+      
+  2.3 Install the object:
+      python setup.py install
+      
+      This should install the openaccess package into you python
+      distribution. So you will need write access to the python
+      installation tree.
+      
+
+--------------------------------------------------------------------
+Examples:
+
+The oaTools directory contains several example python scripts.
+(OpenAccess libraries need to be configured in the cds.lib file 
+ for these examples to run).
+
+  python oaTools/oaExtDemo.py 
+  python oaTools/oaExtDemoClass.py
+    Two example that use Extensions.
+    
+  python oaTools/oaObsererss.py
+    An example of how observers can be used from Python
+    
+  python oaTools/oaBrowser.py ...
+    Open the Browser on all the libraries or a given cellview.
+    This example requires wxWindows Python extensions.
+    Modes:
+      -libs                     # browe the libs
+      -cellview lib cell view   # browse a design
+      -module                   # browse the openaccess22 module
+      -pick                     # open a GUI to fetch a design
+    
+  python oaTools/oaTracer.py -cellview library_name cellview_name view_name
+    Open the Tracer program on a design.
+    This examples the tracing of connectivity.
+    This example requires wxWindows Python extensions.
+
+--------------------------------------------------------------------
+Other Information:
+
+The code generation process is discussed in the "Python for
+OpenAccess 2.2" document, for those interested. The code generation
+process requires the OpenAccess 2.2 Source Kit.
+
+--------------------------------------------------------------------
+  

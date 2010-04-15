@@ -1,0 +1,123 @@
+#
+PYTHON = C:\Python25\python.exe
+DOXYGEN = "C:\Program Files\doxygen-1.3.8\bin\doxygen.exe"
+
+build: dirs extract patch prepare gendesc gencode 
+
+code: dirs extract patch prepare genexports gendesc gencode
+
+#----------------------------------------------------
+dirs:  ..\wrap ..\DoxData ..\DoxExt ..\Logs
+
+..\wrap:
+        mkd ..\wrap
+
+..\DoxData:
+        mkd ..\DoxData
+        
+..\DoxExt:
+        mkd ..\DoxExt
+        
+..\Logs:
+        mkd ..\Logs
+
+#----------------------------------------------------
+extract: dirs ..\Logs\doxygen.log
+
+..\Logs\doxygen.log: ..\doxygen.cfg
+        cd ..
+        $(DOXYGEN) doxygen.cfg > Logs\doxygen.log 2>&1
+        cd NtBuild
+        
+#----------------------------------------------------
+patch: extract ..\Logs\patch.log
+
+..\Logs\patch.log: \
+ ..\Logs\doxygen.log
+        cd ..
+        copy Patch\*.xml DoxExt\xml > Logs\patch.log
+        cd NtBuild
+
+#----------------------------------------------------
+prepare: patch ..\DoxData ..\Logs\oaXml2DoxData.log
+
+..\Logs\oaXml2DoxData.log: \
+ ..\Scripts\oaXml2DoxData.py \
+ ..\Scripts\pyXml2DoxData.py \
+ ..\Logs\patch.log
+        cd ..
+        $(PYTHON) -u Scripts\oaXml2DoxData.py > Logs\oaXml2DoxData.log
+        cd NtBuild
+
+#----------------------------------------------------
+genexports: prepare ..\oaExports.h 
+
+..\oaExports.h: ..\Scripts\pyDoxData2Export.py ..\Logs\pyXml2DoxData.log
+        cd ..
+        $(PYTHON) -u Scripts\pyDoxData2Export.py 
+        cd NtBuild
+
+#----------------------------------------------------
+gendesc: prepare ..\Logs\oaDoxData2Desc.log 
+
+..\Logs\oaDoxData2Desc.log: \
+ ..\Logs\oaXml2DoxData.log \
+ ..\Scripts\oaDoxData2Desc.py \
+ ..\Scripts\oaDDDPatch.py \
+ ..\Scripts\oaDDDReprHints.py \
+ ..\Scripts\oaDDDFunctionHints.py \
+ ..\Scripts\pyDoxData2Desc.py \
+ ..\Scripts\pyDDDFindClasses.py \
+ ..\Scripts\pyDDDFindTemplateTypes.py \
+ ..\Scripts\pyDDDFunction.py \
+ ..\Scripts\pyDDDParameters.py \
+ ..\Scripts\pyDDDPatchData.py \
+ ..\Scripts\pyDDDSpecialCases.py 
+        cd ..
+        $(PYTHON) -u Scripts\oaDoxData2Desc.py > Logs\oaDoxData2Desc.log
+        cd NtBuild
+
+#----------------------------------------------------
+gencode: gendesc ..\Logs\oaCoderMain.log
+
+..\Logs\oaCoderMain.log: \
+ ..\OpenAccessDesc.py \
+ ..\Scripts\pyCoderClass.py \
+ ..\Scripts\pyCoderClassArray.py \
+ ..\Scripts\pyCoderFunc.py \
+ ..\Scripts\pyCoderMain.py \
+ ..\Scripts\oaCoderMain.py \
+ ..\src\*.cpp \
+ ..\src\*.h
+        cd ..
+        $(PYTHON) -u Scripts\oaCoderMain.py > Logs\oaCoderMain.log
+        cd NtBuild
+
+#----------------------------------------------------
+compile: gencode ..\Logs\Compile.log
+
+..\Logs\Compile.log: \
+ ..\setup.py \
+ ..\src\*.cpp \
+ ..\src\*.h \
+ ..\wrap\*.cpp \
+ ..\wrap\*.h
+        cd ..
+        $(PYTHON) -u setup.py build > Logs\Compile.log 2>&1
+        cd NtBuild
+
+#----------------------------------------------------
+clean:
+        cd ..
+        del *.log
+        cd NtBuild
+
+#----------------------------------------------------
+veryclean:
+        cd ..
+        del *.log
+        NtBuild\rmd DoxData
+        NtBuild\rmd DoxExt
+        NtBuild\rmd wrap
+        NtBuild\rmd obj
+        cd NtBuild

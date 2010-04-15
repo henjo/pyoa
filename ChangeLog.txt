@@ -1,0 +1,92 @@
+Change Log:
+
+2008-05-07
+  Updated to build off the 2.2p084 source kit.
+  While new releases are not normally needed with updates that
+  have not "API" changes, that is not the case. In p072 some of
+  the enum values changes (new values added, and some removed).
+  While this does not change the API from a link name perspective,
+  it requires new sources for PyOA and it uses all the enum names
+  in its source. So I've built a new kit from the p084 release
+  to fix the issues with the enums changes.
+
+  2008-05-07
+  Updated for Release under the Apache License, Version 2.0.
+
+2007-11-16
+  Fix a few function type prototypes to correct issues with Python 2.5.
+
+2007-05-15
+  Fix issue with oaAppDef not have templates specialization for
+  oaAppObject. Thus no access to extension on oaAppObjects.
+
+2007-03-28
+  Fix issue with auto-typecasting not detecting type oaText.
+
+2007-02-21
+  Updated for Release OpenAccess 2.2.6
+  
+2007-01-29
+  Updated to compile with Python 2.5
+
+2006-08-14
+  Updated for Release OpenAccess 2.2.6
+  Renamed Example directory to be oaTools (to match the import statements).
+  Updates to setup.py to support builds on linux_rhel30_64.
+  Minor updates to the Notes.txt file.
+
+2006-06-02
+  Updated for Release OpenAccess 2.2.5
+  
+2006-04-19
+  Fixed bug with oaInstTerm::crate and oaModInstTerm::create.
+  The wrapped function for these did not allow a NULL for the net.
+  This is now allowed.
+  
+2006-03-14
+  Fixed bug with routines that returned a object of type
+  oaDesignObject, oaTechObject, oaSessionObject or oaTechObject.
+  These where being incorrectly cast to oaDesign, oaTech, oaSession
+  or oaTech.
+  
+2006-01-17
+  Updated for Release OpenAccess 2.2.4
+  Added missing Exampled Files: Browser.py BrowserWx.py
+
+2005-08.19
+  Updated for Release OpenAccess 2.2.3
+  
+2005-05-25:
+  Added Examples/oaRegionQuery.py that shows use of
+    oaRegionQuery
+  Changes filenames in Examples directory to have 22 suffix.
+  
+2005-05-24:
+  Updated to correct issues with use of oaRegionQuery 
+  virtual callbacks.
+  
+2005-05-16:
+  Updated for Release OpenAccess 2.2.2
+  
+2005-03-11:
+  Updated pyoa_manual.cpp
+    Routine: oaTech_getAppDefsByDataTypeIter
+    Changed typecast to work with gcc 3.2.3
+
+2005-02-11:
+  Updated for Release OpenAccess 2.2.1
+  Included updates to oaTracer/oaBrowser that support picking
+    -topblock, -topmodule, -topocc, -module.
+  oaTracer now supports tracing connectivity in all three
+    domains: Block, Module, or Occurance
+    
+2004-12-13:
+  Updated str repr of InstTerm and InstPin so that the inst part
+  is - if it is invalid for some reason.
+    This was done, because sometimes OA deletes the inst before
+    the instterm. In this case, the inst on an instterm is invalid
+    and referencing it from a oaObserver[oaInstTerm].onPreDestroy
+    is invalid.
+
+2004-12-01
+  First Release Version for OpenAccess 2.2.0
