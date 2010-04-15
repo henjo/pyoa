@@ -1,0 +1,5 @@
+pyoa (2.2.6.p084-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- Henrik Johansson <henrik@johome.net>  Thu, 15 Apr 2010 09:04:48 +0200
