@@ -5,10 +5,10 @@ Maintainer: Henrik Johansson <henrik@johome.net>
 Build-Depends: liboa-dev (=2.2p084-1), debhelper (>=7.0.0), python-support (>= 0.6), cdbs (>= 0.4.49), python-all-dev
 XS-Python-Version: >=2.4
 Standards-Version: 3.8.1
-Homepage: <insert the upstream URL, if relevant>
+Homepage: http://si2.org/openeda.si2.org/projects/python4oa
 
 Package: pyoa
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: ${shlibs:Depends}, ${misc:Depends}, liboa (=2.2p084-1)
+Description: Python extension for the OpenAccess IC design data library
+ LSI kit that builds a custom version of Python with built-in extensions to access the OpenAccess database. 
