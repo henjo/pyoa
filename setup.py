@@ -33,9 +33,9 @@ class Builder:
   #--------------------------------------------------------------------
   def __init__(self):
     if (os.name=='nt'):
-      self.OpenAcessRoot = '../OpenAccess-2.2.6p084'
+      self.OpenAcessRoot = '/opt/oa'
     else:
-      self.OpenAcessRoot = '../OpenAccess-2.2.6p084'
+      self.OpenAcessRoot = '/opt/oa'
 
   #--------------------------------------------------------------------
   def SetupNt(self):
